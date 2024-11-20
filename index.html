@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Marck+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="dedication">От Аюба маме Разет с любовью.</div>
+        <div class="container">
+            <div id="quiz">
+                <div id="progress-container">
+                    <span id="question-progress">Spørgsmål 0 af 0</span>
+                </div>
+                <div id="question-container">
+                    <h2 id="question">Spørgsmål kommer her</h2>
+                    <div id="answer-buttons" class="btn-grid">
+                        <!-- Answer buttons will be inserted here -->
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="start-btn" class="start-btn btn">Start Quiz</button>
+                    <button id="next-btn" class="next-btn btn hide">Næste</button>
+                </div>
+                <div id="score-container" class="hide">
+                    <h2>Din score: <span id="score">0</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
