@@ -67,11 +67,13 @@ body {
 .start-btn, .next-btn {
     background-color: #4CAF50;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: bold;
-    padding: 10px 20px;
+    padding: 15px 30px;
     border: none;
     text-align: center;
+    width: 80%;
+    max-width: 300px;
 }
 
 .start-btn:hover, .next-btn:hover {
@@ -79,15 +81,28 @@ body {
 }
 
 .controls {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 30vh;
+}
+
+.quiz-active .controls {
     position: absolute;
     bottom: 20px;
     left: 0;
     right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 0 20px;
+    margin-top: 0;
+    flex-direction: row;
+}
+
+.quiz-active .start-btn, 
+.quiz-active .next-btn {
+    width: auto;
 }
 
 .hide {
@@ -101,6 +116,7 @@ body {
     font-size: 1.3rem;
     line-height: 1.5;
     color: #333;
+    text-align: center;
 }
 
 #score-container {
@@ -198,5 +214,13 @@ body {
     .wrapper {
         padding: 20px;
     }
+}
+
+.hard-mode {
+    background-color: #ff4444 !important;
+}
+
+.hard-mode:hover {
+    background-color: #d32f2f !important;
 }
  
