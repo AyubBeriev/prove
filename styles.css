@@ -98,6 +98,9 @@ body {
     right: 0;
     margin-top: 0;
     flex-direction: row;
+    padding: 20px;
+    background-color: white;
+    border-top: 1px solid #eee;
 }
 
 .quiz-active .start-btn, 
@@ -128,7 +131,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 80px;
+    bottom: 140px;
     text-align: center;
     padding: 15px;
     font-weight: bold;

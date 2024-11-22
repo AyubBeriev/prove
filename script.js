@@ -9,6 +9,8 @@ const scoreContainer = document.getElementById('score-container');
 const scoreElement = document.getElementById('score');
 const progressText = document.getElementById('question-progress');
 const congratsSound = new Audio('congrats.mp3');
+const potentialButton = document.getElementById('potential-btn');
+const vaerdierButton = document.getElementById('vaerdier-btn');
 
 const WRONG_THRESHOLD = 2;
 const RIGHT_THRESHOLD = 2;
@@ -314,7 +316,7 @@ const questions = [
         ]
     },
     {
-        question: 'Anklagemyndigheden skal��',
+        question: 'Anklagemyndigheden skal',
         answers: [
             { text: 'skaffe de nødvendige beviser gennem efterforskning', correct: false },
             { text: 'overbevise dommerne om, at den anklagede er skyldig', correct: false },
@@ -464,12 +466,591 @@ const questions = [
             { text: 'At dømme i retssager', correct: false },
             { text: 'At lede politiet', correct: false }
         ]
+    },
+    {
+        question: 'Hvad er "Folkekirken"?',
+        answers: [
+            { text: 'Danmarks nationale kirke', correct: true },
+            { text: 'En politisk organisation', correct: false },
+            { text: 'En folkemusikgruppe', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk ø er kendt for sine klipper og rundkirker?',
+        answers: [
+            { text: 'Lolland', correct: false },
+            { text: 'Bornholm', correct: true },
+            { text: 'Samsø', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er "Smørrebrød"?',
+        answers: [
+            { text: 'En type ost', correct: false },
+            { text: 'En traditionel dansk åben sandwich', correct: true },
+            { text: 'En dansk kage', correct: false }
+        ]
     }
 ];
 
 // Then the split happens
 const test1Questions = questions.slice(0, 26);
 const test2Questions = questions.slice(26, 52);
+
+// Replace the entire potentialQuestions array with just one question
+const potentialQuestions = [
+    {
+        question: 'Hvem var Danmarks første kvindelige statsminister?',
+        answers: [
+            { text: 'Helle Thorning-Schmidt', correct: true },
+            { text: 'Pia Kjærsgaard', correct: false },
+            { text: 'Margrethe Vestager', correct: false }
+        ]
+    },
+    {
+        question: 'Hvornår blev Grundloven første gang indført i Danmark?',
+        answers: [
+            { text: '1849', correct: true },
+            { text: '1864', correct: false },
+            { text: '1901', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilket år blev Danmark medlem af EU?',
+        answers: [
+            { text: '1972', correct: false },
+            { text: '1973', correct: true },
+            { text: '1986', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad hedder den nuværende danske monark?',
+        answers: [
+            { text: 'Dronning Margrethe II', correct: false },
+            { text: 'Kong Frederik X', correct: true },
+            { text: 'Dronning Ingrid', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk forfatter skrev "Den grimme ælling"?',
+        answers: [
+            { text: 'Hans Christian Andersen', correct: true },
+            { text: 'Karen Blixen', correct: false },
+            { text: 'Søren Kierkegaard', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er Danmarks nationaldag?',
+        answers: [
+            { text: '5. juni', correct: true },
+            { text: '15. april', correct: false },
+            { text: '25. december', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken by er Danmarks næststørste?',
+        answers: [
+            { text: 'Odense', correct: false },
+            { text: 'Aarhus', correct: true },
+            { text: 'Aalborg', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er Folketinget?',
+        answers: [
+            { text: 'Danmarks parlament', correct: true },
+            { text: 'Danmarks højesteret', correct: false },
+            { text: 'Danmarks regering', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilket parti tilhører Mette Frederiksen?',
+        answers: [
+            { text: 'Venstre', correct: false },
+            { text: 'Socialdemokratiet', correct: true },
+            { text: 'Det Konservative Folkeparti', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er Danmarks officielle sprog?',
+        answers: [
+            { text: 'Engelsk', correct: false },
+            { text: 'Tysk', correct: false },
+            { text: 'Dansk', correct: true }
+        ]
+    },
+    {
+        question: 'Hvilken religion er den mest udbredte i Danmark?',
+        answers: [
+            { text: 'Islam', correct: false },
+            { text: 'Protestantisk kristendom', correct: true },
+            { text: 'Katolicisme', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er Danmarks valuta?',
+        answers: [
+            { text: 'Euro', correct: false },
+            { text: 'Dansk krone', correct: true },
+            { text: 'Svensk krone', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilket år blev kvinder stemmeberettigede i Danmark?',
+        answers: [
+            { text: '1915', correct: true },
+            { text: '1921', correct: false },
+            { text: '1945', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er Danmarks højeste punkt?',
+        answers: [
+            { text: 'Himmelbjerget', correct: false },
+            { text: 'Møllehøj', correct: true },
+            { text: 'Yding Skovhøj', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk film vandt en Oscar i 2021?',
+        answers: [
+            { text: 'Druk', correct: true },
+            { text: 'Jagten', correct: false },
+            { text: 'Hævnen', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er Danmarks største eksportvare?',
+        answers: [
+            { text: 'Landbrugsprodukter', correct: false },
+            { text: 'Medicinalprodukter', correct: true },
+            { text: 'Maskiner', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk ø er den største?',
+        answers: [
+            { text: 'Fyn', correct: false },
+            { text: 'Sjælland', correct: true },
+            { text: 'Bornholm', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad hedder Danmarks nationalfugl?',
+        answers: [
+            { text: 'Svanen', correct: true },
+            { text: 'Storken', correct: false },
+            { text: 'Spurven', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk virksomhed er kendt for at producere legetøjsklodser?',
+        answers: [
+            { text: 'Carlsberg', correct: false },
+            { text: 'LEGO', correct: true },
+            { text: 'Bang & Olufsen', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er "hygge" i dansk kultur?',
+        answers: [
+            { text: 'En type mad', correct: false },
+            { text: 'En følelse af komfort og velvære', correct: true },
+            { text: 'En traditionel dans', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk by er kendt for Tivoli?',
+        answers: [
+            { text: 'København', correct: true },
+            { text: 'Odense', correct: false },
+            { text: 'Aarhus', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er Danmarks største sø?',
+        answers: [
+            { text: 'Arresø', correct: true },
+            { text: 'Esrum Sø', correct: false },
+            { text: 'Furesø', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk komponist skrev musikken til balletten "Napoli"?',
+        answers: [
+            { text: 'Carl Nielsen', correct: false },
+            { text: 'Niels W. Gade', correct: false },
+            { text: 'August Bournonville', correct: true }
+        ]
+    },
+    {
+        question: 'Hvad er Danmarks ældste by?',
+        answers: [
+            { text: 'Ribe', correct: true },
+            { text: 'Roskilde', correct: false },
+            { text: 'Aalborg', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk videnskabsmand opdagede elektromagnetismen?',
+        answers: [
+            { text: 'Niels Bohr', correct: false },
+            { text: 'H.C. Ørsted', correct: true },
+            { text: 'Tycho Brahe', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er "Folkekirken"?',
+        answers: [
+            { text: 'Danmarks nationale kirke', correct: true },
+            { text: 'En politisk organisation', correct: false },
+            { text: 'En folkemusikgruppe', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk ø er kendt for sine klipper og rundkirker?',
+        answers: [
+            { text: 'Lolland', correct: false },
+            { text: 'Bornholm', correct: true },
+            { text: 'Samsø', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er "Smørrebrød"?',
+        answers: [
+            { text: 'En type ost', correct: false },
+            { text: 'En traditionel dansk åben sandwich', correct: true },
+            { text: 'En dansk kage', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk forfatter modtog Nobelprisen i litteratur i 1944?',
+        answers: [
+            { text: 'Hans Christian Andersen', correct: false },
+            { text: 'Karen Blixen', correct: false },
+            { text: 'Johannes V. Jensen', correct: true }
+        ]
+    },
+    {
+        question: 'Hvad er "J-dag" i Danmark?',
+        answers: [
+            { text: 'Dagen hvor julebryggen frigives', correct: true },
+            { text: 'Dagen hvor juletræet tændes', correct: false },
+            { text: 'Dagen hvor julegaver gives', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk by er kendt for sin domkirke og vikingskibsmuseum?',
+        answers: [
+            { text: 'Roskilde', correct: true },
+            { text: 'Esbjerg', correct: false },
+            { text: 'Kolding', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er "Fastelavn" i Danmark?',
+        answers: [
+            { text: 'En høstfest', correct: false },
+            { text: 'En forårsfestival', correct: false },
+            { text: 'En karnevalslignende tradition før fasten', correct: true }
+        ]
+    },
+    {
+        question: 'Hvilken dansk ø er kendt for sine mange slotte og herregårde?',
+        answers: [
+            { text: 'Fyn', correct: true },
+            { text: 'Lolland', correct: false },
+            { text: 'Møn', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er "Folketingets Ombudsmand"?',
+        answers: [
+            { text: 'En person der overvåger regeringens arbejde', correct: false },
+            { text: 'En person der hjælper borgere med klager over offentlige myndigheder', correct: true },
+            { text: 'En person der repræsenterer Danmark i udlandet', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er "Grundtvigskolen" i Danmark?',
+        answers: [
+            { text: 'En type folkeskole', correct: false },
+            { text: 'En type højskole', correct: true },
+            { text: 'En type universitet', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk maler er kendt for sine skildringer af Skagensmalerne?',
+        answers: [
+            { text: 'P.S. Krøyer', correct: true },
+            { text: 'Vilhelm Hammershøi', correct: false },
+            { text: 'Anna Ancher', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad hedder Danmarks største lufthavn?',
+        answers: [
+            { text: 'Aalborg Lufthavn', correct: false },
+            { text: 'Billund Lufthavn', correct: false },
+            { text: 'Københavns Lufthavn', correct: true }
+        ]
+    },
+    {
+        question: 'Hvornår blev Danmark en del af NATO?',
+        answers: [
+            { text: '1949', correct: true },
+            { text: '1955', correct: false },
+            { text: '1961', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilket dansk band er kendt for sangen "Barbie Girl"?',
+        answers: [
+            { text: 'D-A-D', correct: false },
+            { text: 'Aqua', correct: true },
+            { text: 'Alphabeat', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er Danmarks største nationalpark?',
+        answers: [
+            { text: 'Nationalpark Mols Bjerge', correct: false },
+            { text: 'Nationalpark Vadehavet', correct: true },
+            { text: 'Nationalpark Thy', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er Danmarks officielle motto?',
+        answers: [
+            { text: 'Med lov skal land bygges', correct: true },
+            { text: 'Frihed, lighed, broderskab', correct: false },
+            { text: 'Enighed gør stærk', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad hedder den danske troldmand, der er kendt for sine illusioner?',
+        answers: [
+            { text: 'Anders Matthesen', correct: false },
+            { text: 'Rune Klan', correct: false },
+            { text: 'Jesper Grønkjær', correct: true }
+        ]
+    },
+    {
+        question: 'Hvad er en folkeskole i Danmark?',
+        answers: [
+            { text: 'En skole for voksne', correct: false },
+            { text: 'En offentlig grundskole for børn', correct: true },
+            { text: 'En skole for højere uddannelse', correct: false }
+        ]
+    },
+    {
+        question: 'Hvornår fandt slaget ved Dybbøl sted?',
+        answers: [
+            { text: '1864', correct: true },
+            { text: '1848', correct: false },
+            { text: '1870', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken by er kendt for sine historiske bindingsværkshuse og en af verdens ældste rådhuse?',
+        answers: [
+            { text: 'Odense', correct: false },
+            { text: 'Ribe', correct: true },
+            { text: 'Aalborg', correct: false }
+        ]
+    },
+    {
+        question: 'Hvem var designeren af Operahuset i København?',
+        answers: [
+            { text: 'Henning Larsen', correct: true },
+            { text: 'Bjarke Ingels', correct: false },
+            { text: 'Arne Jacobsen', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er Danmarks ældste universitet?',
+        answers: [
+            { text: 'Aarhus Universitet', correct: false },
+            { text: 'Københavns Universitet', correct: true },
+            { text: 'Syddansk Universitet', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken dansk konge blev kendt som "den evige konge"?',
+        answers: [
+            { text: 'Christian IV', correct: false },
+            { text: 'Gorm den Gamle', correct: false },
+            { text: 'Knud den Hellige', correct: true }
+        ]
+    },
+    {
+        question: 'Hvad symboliserer de tre løver i Danmarks rigsvåben?'
+    }
+];
+
+// Add the new questions array
+const vaerdierQuestions = [
+    {
+        question: 'Hvad betyder ytringsfrihed i Danmark?',
+        answers: [
+            { text: 'At man kan sige hvad som helst uden konsekvenser', correct: false },
+            { text: 'At man kan udtrykke sine meninger frit, så længe det ikke krænker andres rettigheder eller overtræder loven', correct: true },
+            { text: 'At man kun kan ytre sig frit i private sammenhænge', correct: false }
+        ]
+    },
+    {
+        question: 'Hvordan praktiseres ligestilling mellem kønnene i Danmark?',
+        answers: [
+            { text: 'Mænd og kvinder har lige rettigheder og muligheder inden for uddannelse, arbejde og politik', correct: true },
+            { text: 'Kun kvinder har adgang til bestemte erhverv', correct: false },
+            { text: 'Mænd har fortrinsret til lederstillinger', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad betyder religionsfrihed i Danmark?',
+        answers: [
+            { text: 'At alle har ret til at praktisere deres religion eller vælge ikke at have en religion', correct: true },
+            { text: 'At kun kristendommen er tilladt', correct: false },
+            { text: 'At man ikke må skifte religion', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad forstås ved princippet om lighed for loven i Danmark?',
+        answers: [
+            { text: 'At alle behandles ens af retssystemet uanset social status, køn eller etnicitet', correct: true },
+            { text: 'At kun danske statsborgere har ret til en retfærdig rettergang', correct: false },
+            { text: 'At loven kun gælder for personer over 18 år', correct: false }
+        ]
+    },
+    {
+        question: 'Hvordan sikres forsamlingsfrihed i Danmark?',
+        answers: [
+            { text: 'Borgere har ret til at samles fredeligt og uden våben til møder og demonstrationer', correct: true },
+            { text: 'Man skal have tilladelse fra myndighederne for at mødes mere end fem personer', correct: false },
+            { text: 'Forsamlinger er kun tilladt indendørs', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er betydningen af pressefrihed i Danmark?',
+        answers: [
+            { text: 'Medierne kan rapportere og udtrykke meninger uden censur fra staten', correct: true },
+            { text: 'Kun statslige medier har ret til at udgive nyheder', correct: false },
+            { text: 'Journalister skal godkende deres artikler hos myndighederne før udgivelse', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad indebærer princippet om privat ejendomsret i Danmark?',
+        answers: [
+            { text: 'At individer har ret til at eje og disponere over ejendom, så længe det ikke strider mod loven', correct: true },
+            { text: 'At al ejendom ejes af staten', correct: false },
+            { text: 'At man kun kan eje ejendom gennem arv', correct: false }
+        ]
+    },
+    {
+        question: 'Hvordan forstås demokrati som en dansk værdi?',
+        answers: [
+            { text: 'At borgerne har ret til at deltage i frie og fair valg samt ytre deres meninger om politiske forhold', correct: true },
+            { text: 'At kun udvalgte grupper har stemmeret', correct: false },
+            { text: 'At regeringen udpeges uden folkelig deltagelse', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad betyder princippet om retssikkerhed i Danmark?',
+        answers: [
+            { text: 'At borgerne er beskyttet mod vilkårlige indgreb fra myndighederne og har ret til en retfærdig rettergang', correct: true },
+            { text: 'At myndighederne kan tilbageholde personer uden grund', correct: false },
+            { text: 'At kun personer med høj indkomst har adgang til retssystemet', correct: false }
+        ]
+    },
+    {
+        question: 'Hvordan praktiseres tolerance som en dansk værdi?',
+        answers: [
+            { text: 'Ved at acceptere og respektere andres forskelligheder, herunder kultur, religion og livsstil', correct: true },
+            { text: 'Ved at undgå kontakt med personer fra andre kulturer', correct: false },
+            { text: 'Ved at påtvinge andre ens egne værdier', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad menes der med forsamlingsfrihed i Danmark?',
+        answers: [
+            { text: 'At man frit kan samles og demonstrere, så længe det er fredeligt', correct: true },
+            { text: 'At man kun kan samles, hvis man har tilladelse fra myndighederne', correct: false },
+            { text: 'At man kun kan samles indendørs', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad betyder princippet om magtens tredeling?',
+        answers: [
+            { text: 'At Folketinget, domstolene og politiet arbejder sammen', correct: false },
+            { text: 'At magten er fordelt mellem den lovgivende, udøvende og dømmende magt', correct: true },
+            { text: 'At regeringen alene har den fulde magt', correct: false }
+        ]
+    },
+    {
+        question: 'Hvordan praktiseres lighed for loven i Danmark?',
+        answers: [
+            { text: 'Alle borgere er lige for loven uanset deres sociale status, køn eller etnicitet', correct: true },
+            { text: 'Kun statsborgere har fuld adgang til retssystemet', correct: false },
+            { text: 'Loven gælder kun for dem, der betaler skat', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad betyder det, at Danmark er et konstitutionelt monarki?',
+        answers: [
+            { text: 'At monarken har absolut magt', correct: false },
+            { text: 'At monarken har symbolsk magt og arbejder inden for rammerne af Grundloven', correct: true },
+            { text: 'At monarken kun er ansvarlig for udenrigspolitik', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad indebærer princippet om ligestilling i Danmark?',
+        answers: [
+            { text: 'At kvinder og mænd har lige muligheder inden for uddannelse og arbejdsmarkedet', correct: true },
+            { text: 'At kvinder får bedre rettigheder end mænd', correct: false },
+            { text: 'At kun kvinder kan få adgang til bestemte erhverv', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad er Folkekirken i Danmark?',
+        answers: [
+            { text: 'En statskirke, som er grundlagt på evangelisk-luthersk tro', correct: true },
+            { text: 'En religiøs organisation for alle trosretninger', correct: false },
+            { text: 'En politisk organisation, der støtter regeringen', correct: false }
+        ]
+    },
+    {
+        question: 'Hvordan sikres demokratiet i Danmark?',
+        answers: [
+            { text: 'Gennem frie og fair valg, hvor borgerne kan stemme på deres repræsentanter', correct: true },
+            { text: 'Gennem kongen eller dronningen, der udpeger Folketingets medlemmer', correct: false },
+            { text: 'Gennem en national rådslagning', correct: false }
+        ]
+    },
+    {
+        question: 'Må man stifte en forening i Danmark, der går imod regeringens politik?',
+        answers: [
+            { text: 'Ja, så længe foreningen ikke bruger vold', correct: true },
+            { text: 'Nej, kun politisk neutrale foreninger er tilladt', correct: false },
+            { text: 'Kun med regeringens godkendelse', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad betyder princippet om privatlivets fred i Danmark?',
+        answers: [
+            { text: 'At myndighederne ikke må overvåge borgerne uden en dommerkendelse', correct: true },
+            { text: 'At borgerne skal dele deres personlige data med staten', correct: false },
+            { text: 'At medierne kan offentliggøre borgernes private oplysninger', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad indebærer trykkefrihed i Danmark?',
+        answers: [
+            { text: 'At medierne kan offentliggøre nyheder uden censur fra myndighederne', correct: true },
+            { text: 'At kun statslige medier må publicere politiske emner', correct: false },
+            { text: 'At pressen skal godkende deres artikler hos regeringen', correct: false }
+        ]
+    }
+];
 
 function updateHardButton() {
     if (hardQuestions.length === 0) {
@@ -488,6 +1069,8 @@ updateHardButton();
 test1Button.addEventListener('click', () => startGame('test1'));
 test2Button.addEventListener('click', () => startGame('test2'));
 hardButton.addEventListener('click', () => startGame('hard'));
+potentialButton.addEventListener('click', () => startGame('potential'));
+vaerdierButton.addEventListener('click', () => startGame('vaerdier'));
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
     setNextQuestion();
@@ -496,7 +1079,9 @@ nextButton.addEventListener('click', () => {
 function startGame(mode) {
     test1Button.classList.add('hide');
     test2Button.classList.add('hide');
+    potentialButton.classList.add('hide');
     hardButton.classList.add('hide');
+    vaerdierButton.classList.add('hide');
     document.getElementById('quiz').classList.add('quiz-active');
     
     if (mode === 'hard') {
@@ -507,8 +1092,12 @@ function startGame(mode) {
         }
     } else if (mode === 'test1') {
         shuffledQuestions = [...test1Questions].sort(() => Math.random() - 0.5);
-    } else {
+    } else if (mode === 'test2') {
         shuffledQuestions = [...test2Questions].sort(() => Math.random() - 0.5);
+    } else if (mode === 'potential') {
+        shuffledQuestions = [...potentialQuestions].sort(() => Math.random() - 0.5);
+    } else if (mode === 'vaerdier') {
+        shuffledQuestions = [...vaerdierQuestions].sort(() => Math.random() - 0.5);
     }
     
     currentQuestionIndex = 0;
@@ -538,7 +1127,10 @@ function showQuestion(question) {
     feedbackMessage.textContent = '...';
     questionContainer.appendChild(feedbackMessage);
     
-    question.answers.forEach(answer => {
+    // Randomize the order of answers
+    const shuffledAnswers = [...question.answers].sort(() => Math.random() - 0.5);
+    
+    shuffledAnswers.forEach(answer => {
         const button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add('btn');
@@ -640,13 +1232,11 @@ function showScore() {
     
     test1Button.classList.remove('hide');
     test2Button.classList.remove('hide');
+    potentialButton.classList.remove('hide');
     hardButton.classList.remove('hide');
+    vaerdierButton.classList.remove('hide');
     document.getElementById('quiz').classList.remove('quiz-active');
     updateHardButton();
-    
-    congratsSound.play().catch(error => {
-        console.log("Audio playback failed:", error);
-    });
 }
 
 function showStats() {
