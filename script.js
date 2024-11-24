@@ -884,7 +884,12 @@ const potentialQuestions = [
         ]
     },
     {
-        question: 'Hvad symboliserer de tre løver i Danmarks rigsvåben?'
+        question: 'Hvad symboliserer de tre løver i Danmarks rigsvåben?',
+        answers: [
+            { text: 'Kongemagten', correct: true },
+            { text: 'Mod og styrke', correct: false },
+            { text: 'Trofasthed', correct: false }
+        ]
     }
 ];
 
