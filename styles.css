@@ -226,4 +226,25 @@ body {
 .hard-mode:hover {
     background-color: #d32f2f !important;
 }
+
+#progress-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#feedback-icon {
+    font-size: 1.5rem;
+    min-width: 30px;
+    text-align: center;
+}
+
+.correct-icon {
+    color: #28a745;
+}
+
+.wrong-icon {
+    color: #dc3545;
+}
  

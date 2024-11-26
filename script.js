@@ -885,7 +885,12 @@ const potentialQuestions = [
         ]
     },
     {
-        question: 'Hvad symboliserer de tre løver i Danmarks rigsvåben?'
+        question: 'Hvad symboliserer de tre løver i Danmarks rigsvåben?',
+        answers: [
+            { text: 'Danmarks tre største øer', correct: false },
+            { text: 'Kongens magt, styrke og visdom', correct: true },
+            { text: 'De tre nordiske lande', correct: false }
+        ]
     }
 ];
 
@@ -1354,11 +1359,27 @@ function setNextQuestion() {
 function showQuestion(question) {
     questionElement.innerText = question.question;
     
-    const feedbackMessage = document.createElement('div');
-    feedbackMessage.classList.add('feedback-message');
-    feedbackMessage.id = 'feedback-message';
-    feedbackMessage.textContent = '...';
-    questionContainer.appendChild(feedbackMessage);
+    const feedbackIcon = document.getElementById('feedback-icon');
+    
+    if (!questionStats[question.question]) {
+        questionStats[question.question] = {
+            timesWrong: 0,
+            timesRight: 0
+        };
+    }
+    
+    if (questionStats[question.question].timesRight > questionStats[question.question].timesWrong) {
+        feedbackIcon.textContent = '✅';
+        feedbackIcon.classList.add('correct-icon');
+        feedbackIcon.classList.remove('wrong-icon');
+    } else if (questionStats[question.question].timesWrong > questionStats[question.question].timesRight) {
+        feedbackIcon.textContent = '❌';
+        feedbackIcon.classList.add('wrong-icon');
+        feedbackIcon.classList.remove('correct-icon');
+    } else {
+        feedbackIcon.textContent = '';
+        feedbackIcon.classList.remove('correct-icon', 'wrong-icon');
+    }
     
     // Randomize the order of answers
     const shuffledAnswers = [...question.answers].sort(() => Math.random() - 0.5);
@@ -1377,10 +1398,9 @@ function showQuestion(question) {
 
 function resetState() {
     nextButton.classList.add('hide');
-    const feedbackMessage = document.getElementById('feedback-message');
-    if (feedbackMessage) {
-        feedbackMessage.remove();
-    }
+    const feedbackIcon = document.getElementById('feedback-icon');
+    feedbackIcon.textContent = '';
+    feedbackIcon.classList.remove('correct-icon', 'wrong-icon');
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild);
     }
@@ -1393,7 +1413,7 @@ function selectAnswer(e) {
     
     selectedButton.classList.add('selected');
     
-    const feedbackMessage = document.getElementById('feedback-message');
+    const feedbackIcon = document.getElementById('feedback-icon');
     
     if (!questionStats[currentQuestion.question]) {
         questionStats[currentQuestion.question] = {
@@ -1405,14 +1425,16 @@ function selectAnswer(e) {
     if (correct) {
         score++;
         questionStats[currentQuestion.question].timesRight++;
-        feedbackMessage.textContent = 'Korrekt! ✅';
-        feedbackMessage.classList.add('correct-message');
+        feedbackIcon.textContent = '✅';
+        feedbackIcon.classList.add('correct-icon');
+        feedbackIcon.classList.remove('wrong-icon');
         
         hardQuestions = hardQuestions.filter(q => q.question !== currentQuestion.question);
     } else {
         questionStats[currentQuestion.question].timesWrong++;
-        feedbackMessage.textContent = 'Forkert! ❌';
-        feedbackMessage.classList.add('wrong-message');
+        feedbackIcon.textContent = '❌';
+        feedbackIcon.classList.add('wrong-icon');
+        feedbackIcon.classList.remove('correct-icon');
         
         if (questionStats[currentQuestion.question].timesWrong >= WRONG_THRESHOLD &&
             !hardQuestions.some(q => q.question === currentQuestion.question)) {
