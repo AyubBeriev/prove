@@ -11,6 +11,7 @@ const progressText = document.getElementById('question-progress');
 const congratsSound = new Audio('congrats.mp3');
 const potentialButton = document.getElementById('potential-btn');
 const vaerdierButton = document.getElementById('vaerdier-btn');
+const aktuelleButton = document.getElementById('aktuelle-btn');
 
 const WRONG_THRESHOLD = 2;
 const RIGHT_THRESHOLD = 2;
@@ -884,12 +885,7 @@ const potentialQuestions = [
         ]
     },
     {
-        question: 'Hvad symboliserer de tre løver i Danmarks rigsvåben?',
-        answers: [
-            { text: 'Kongemagten', correct: true },
-            { text: 'Mod og styrke', correct: false },
-            { text: 'Trofasthed', correct: false }
-        ]
+        question: 'Hvad symboliserer de tre løver i Danmarks rigsvåben?'
     }
 ];
 
@@ -1057,6 +1053,234 @@ const vaerdierQuestions = [
     }
 ];
 
+// Add these questions to the aktuelleQuestions array
+const aktuelleQuestions = [
+    {
+        question: 'Hvilken tidligere formand for Dansk Håndboldforbund døde i november 2024 i en alder af 65 år?',
+        answers: [
+            { text: 'Heino Knudsen', correct: false },
+            { text: 'Per Bertelsen', correct: false },
+            { text: 'Morten Stig Christensen', correct: true }
+        ]
+    },
+    {
+        question: 'I hvilken sport vinder det unge talent, Rasmus Søbjerg Pedersen, guld i juni 2024?',
+        answers: [
+            { text: 'Badminton', correct: false },
+            { text: 'Løb', correct: false },
+            { text: 'Cykling', correct: true }
+        ]
+    },
+    {
+        question: 'Hvem er Liberal Alliances partileder?',
+        answers: [
+            { text: 'Margrethe Vestager', correct: false },
+            { text: 'Alex Vanopslagh', correct: true },
+            { text: 'Villy Søvndal', correct: false }
+        ]
+    },
+    {
+        question: 'I hvilken sport vandt Danmark VM-guld i Ballerup, i oktober 2024?',
+        answers: [
+            { text: 'Badminton', correct: false },
+            { text: 'Tennis', correct: false },
+            { text: 'Holdforfølgelsesløb', correct: true }
+        ]
+    },
+    {
+        question: 'Hvad hedder formanden for Socialistisk Folkepartiet?',
+        answers: [
+            { text: 'Pia Olsen Dyhr', correct: true },
+            { text: 'Lars Barfoed', correct: false },
+            { text: 'Mette Frederiksen', correct: false }
+        ]
+    },
+    {
+        question: 'For hvilket dansk landshold takker Kenneth Joanssen af som træner i september 2024, efter 11 år?',
+        answers: [
+            { text: 'Badminton', correct: true },
+            { text: 'Fodbold', correct: false },
+            { text: 'Håndbold', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad hedder formanden for partiet Alternativet?',
+        answers: [
+            { text: 'Jakob Ellemann-Jensen', correct: false },
+            { text: 'Franciska Rosenkilde', correct: true },
+            { text: 'Anders Samuelsen', correct: false }
+        ]
+    },
+    {
+        question: 'For hvilket parti bliver Anne Heeager ny landsperson, efter meddelelse i september 2024?',
+        answers: [
+            { text: 'Socialdemokratiet', correct: false },
+            { text: 'Moderaterne', correct: false },
+            { text: 'De Radikale Venstre', correct: true }
+        ]
+    },
+    {
+        question: 'Hvilken tidligere profil hos DF, som i dag er folketingsmedlem for Danmarksdemokraterne, meldte ud i september 2024, at han ikke stiller op igen?',
+        answers: [
+            { text: 'Søren Espersen', correct: true },
+            { text: 'Søren Egede', correct: false },
+            { text: 'Søren P. Nilsen', correct: false }
+        ]
+    },
+    {
+        question: 'Ud af hvilket parti forlader den tidligere landsformand Klaus Frandsen i juli 2024?',
+        answers: [
+            { text: 'Venstre', correct: false },
+            { text: 'Radikale Venstre', correct: true },
+            { text: 'Socialdemokraterne', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken pris modtog Sarah Smed i november 2024, for hendes mangeårige arbejde for at fremme dialogen mellem udsatte borgere og det samfund, de er en del af?',
+        answers: [
+            { text: 'Bent Melchior Prisen', correct: true },
+            { text: 'Bent Lindgren Prisen', correct: false },
+            { text: 'Bent Friis Prisen', correct: false }
+        ]
+    },
+    {
+        question: 'Til hvilken af verdens mest prestigefyldte bogpris er Solvei Balle nomineret til for \'Om udregning af rumfang\' i september 2024?',
+        answers: [
+            { text: 'National Book Awards', correct: true },
+            { text: 'Gyldendals Bogpris', correct: false },
+            { text: 'De gyldne Laurbær', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad hed den tidligere hofchef, der bl.a. blev kaldt \'kong Frederiks reservefar\', og som døde i august 2024?',
+        answers: [
+            { text: 'Per Grundig', correct: false },
+            { text: 'Per Thornit', correct: true },
+            { text: 'Per Axelsen', correct: false }
+        ]
+    },
+    {
+        question: 'Fra hvilket land i rigsfællesskabet er de adopterede børn fra 1950\'erne til 70\'erne, der i juni 2024 rejser millionkrav imod den danske stat, fra?',
+        answers: [
+            { text: 'Færøerne', correct: false },
+            { text: 'Grønland', correct: true },
+            { text: 'Norge', correct: false }
+        ]
+    },
+    {
+        question: 'For hvilken superliga klub stopper Carsten V. Jensen som fodbolddirektør i oktober 2024?',
+        answers: [
+            { text: 'Brøndby', correct: true },
+            { text: 'FCN', correct: false },
+            { text: 'FCK', correct: false }
+        ]
+    },
+    {
+        question: 'I hvilket parti er Hans Christian Schmidt, der melder ud i august 2024, at han ikke stiller op igen efter 30 år i Folketinget?',
+        answers: [
+            { text: 'Moderaterne', correct: false },
+            { text: 'Socialdemokratiet', correct: false },
+            { text: 'Venstre', correct: true }
+        ]
+    },
+    {
+        question: 'Hvilken prestigefyldt præmie vinder \'The Room Next Door\' med Danske Alex Høgh Andersen ved filmfestivalen i Venedig i september 2024?',
+        answers: [
+            { text: 'Den Gyldne Løve', correct: true },
+            { text: 'Den Gyldne Bjørn', correct: false },
+            { text: 'Den Gyldne Ulv', correct: false }
+        ]
+    },
+    {
+        question: 'I hvilken sport vandt Emma Norsgaard DM-guld i juni 2024?',
+        answers: [
+            { text: 'Badminton', correct: false },
+            { text: 'Løb', correct: false },
+            { text: 'Cykling', correct: true }
+        ]
+    },
+    {
+        question: 'For hvilket parti var Kjeld Olesen næstformand i syv år og minister ad flere omgange, og som døde i juli 2024?',
+        answers: [
+            { text: 'Socialdemokratiet', correct: true },
+            { text: 'Moderaterne', correct: false },
+            { text: 'Venstre', correct: false }
+        ]
+    },
+    {
+        question: 'Hvem var skuespilleren Bent Mejding, som døde i en alder af 87 år?',
+        answers: [
+            { text: 'Han var en berømt forfatter, der skrev flere danske klassikere', correct: false },
+            { text: 'Han var en dansk sportsstjerne, der vandt flere olympiske medaljer', correct: false },
+            { text: 'Han var kendt for sin rolle i Matador og sit bidrag til teaterbranchen', correct: true }
+        ]
+    },
+    {
+        question: 'Hvilken toppost i Københavns Kommune blev Lars Weiss i september 2024 udpeget til af Socialdemokratiet?',
+        answers: [
+            { text: 'Overborgmester', correct: true },
+            { text: 'Teknisk Chef', correct: false },
+            { text: 'Kulturchef', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken af Danmarks mest vindende kvindelige OL-atlet indstiller karrieren i oktober 2024?',
+        answers: [
+            { text: 'Emma Aastrand Jørgensen', correct: true },
+            { text: 'Emma Winther Nielsen', correct: false },
+            { text: 'Emma Jay Jensen', correct: false }
+        ]
+    },
+    {
+        question: 'Hvad hedder Lars Boje Mathiesens nye parti, der i august 2024 blev godkendt af Valgnævnet?',
+        answers: [
+            { text: 'Socialpartiet', correct: false },
+            { text: 'Borgernes Parti', correct: true },
+            { text: 'Arbejdernes Parti', correct: false }
+        ]
+    },
+    {
+        question: 'Hvem bliver minister for det nye Ministerium for Samfundssikkerhed og Beredskab?',
+        answers: [
+            { text: 'Torsten Schack Pedersen', correct: true },
+            { text: 'Mette Frederiksen', correct: false },
+            { text: 'Jakob Ellemann-Jensen', correct: false }
+        ]
+    },
+    {
+        question: 'I hvilken sportsgren knuser Jacob Sommer Simonsen en 39 år gammel rekord i september 2024?',
+        answers: [
+            { text: 'Cykling', correct: false },
+            { text: 'Marathon', correct: true },
+            { text: 'Ski', correct: false }
+        ]
+    },
+    {
+        question: 'Hvilken verdenskendt dansk håndboldsspiller spillede sin karrieres sidste klubkamp for Aalborg i Champions League-finalen mod Barcelona i juni?',
+        answers: [
+            { text: 'Mikkel Hansen', correct: true },
+            { text: 'Mikkel Jensen', correct: false },
+            { text: 'Mikkel Findsen', correct: false }
+        ]
+    },
+    {
+        question: 'I hvilken sportsgren vandt Alexander Hillhouse guld ved de Paralympiske lege i august 2024 med tiden 54,61 sekunder?',
+        answers: [
+            { text: 'Svømning', correct: true },
+            { text: 'Løb', correct: false },
+            { text: 'Cykling', correct: false }
+        ]
+    },
+    {
+        question: 'I hvilken sportsgren sikrede Emma Lund Danmarks anden guldmedalje ved de Paralympiske lege i Paris i september?',
+        answers: [
+            { text: 'Badminton', correct: false },
+            { text: 'Svømning', correct: false },
+            { text: 'Linjeløb', correct: true }
+        ]
+    }
+];
+
 function updateHardButton() {
     if (hardQuestions.length === 0) {
         hardButton.disabled = true;
@@ -1076,6 +1300,7 @@ test2Button.addEventListener('click', () => startGame('test2'));
 hardButton.addEventListener('click', () => startGame('hard'));
 potentialButton.addEventListener('click', () => startGame('potential'));
 vaerdierButton.addEventListener('click', () => startGame('vaerdier'));
+aktuelleButton.addEventListener('click', () => startGame('aktuelle'));
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
     setNextQuestion();
@@ -1087,6 +1312,7 @@ function startGame(mode) {
     potentialButton.classList.add('hide');
     hardButton.classList.add('hide');
     vaerdierButton.classList.add('hide');
+    aktuelleButton.classList.add('hide');
     document.getElementById('quiz').classList.add('quiz-active');
     
     if (mode === 'hard') {
@@ -1103,6 +1329,8 @@ function startGame(mode) {
         shuffledQuestions = [...potentialQuestions].sort(() => Math.random() - 0.5);
     } else if (mode === 'vaerdier') {
         shuffledQuestions = [...vaerdierQuestions].sort(() => Math.random() - 0.5);
+    } else if (mode === 'aktuelle') {
+        shuffledQuestions = [...aktuelleQuestions].sort(() => Math.random() - 0.5);
     }
     
     currentQuestionIndex = 0;
@@ -1240,6 +1468,7 @@ function showScore() {
     potentialButton.classList.remove('hide');
     hardButton.classList.remove('hide');
     vaerdierButton.classList.remove('hide');
+    aktuelleButton.classList.remove('hide');
     document.getElementById('quiz').classList.remove('quiz-active');
     updateHardButton();
 }
